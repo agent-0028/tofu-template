@@ -1,0 +1,31 @@
+name: Check Infra nonprod (noop)
+run-name: ${{ github.actor }} is building ${{github.build}} 🚀
+on: [workflow_dispatch]
+jobs:
+  tofu-plan-noop-nonprod:
+    runs-on: ubuntu-22.04
+    environment: dev
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up SSH agent
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIV_FOR_GROSGRAIN }}
+      - name: Install OpenTofu
+        uses: tinisi/grosgrain/github_actions/install-tofu-client@master
+      - name: OpenTofu lint
+        working-directory: terraform/nonprod
+        run: |
+          tofu fmt --check --recursive
+      - name: Tofu Plan
+        working-directory: terraform/nonprod
+        env:
+          AWS_ACCESS_KEY_ID: ${{ vars.AWS_ACCESS_KEY_ID }}
+          AWS_DEFAULT_REGION: ${{ vars.AWS_DEFAULT_REGION }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          tofu init
+          tofu workspace select --or-create dev
+          tofu plan --input=false --out=./tinisi-infra.tfplan
+      - run: echo "🍏 This job's status is ${{ job.status }}."
