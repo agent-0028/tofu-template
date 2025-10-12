@@ -1,0 +1,37 @@
+name: Destroy Infra prod
+run-name: ${{ github.actor }} is DESTROYING ${{github.build}} 🚀
+on: workflow_dispatch
+jobs:
+  tofu-destroy-prod:
+    runs-on: ubuntu-22.04
+    environment: prod
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up SSH agent
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIV_FOR_GROSGRAIN }}
+      - name: Install OpenTofu
+        uses: tinisi/grosgrain/github_actions/install-tofu-client@master
+      - name: OpenTofu lint
+        working-directory: terraform/prod
+        run: |
+          tofu fmt --check --recursive
+      - name: Tofu Destroy 🔥
+        working-directory: terraform/prod
+        env:
+          AWS_ACCESS_KEY_ID: ${{ vars.AWS_ACCESS_KEY_ID }}
+          AWS_DEFAULT_REGION: ${{ vars.AWS_DEFAULT_REGION }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          tofu init
+          tofu workspace select default
+          # uncomment to actually destroy
+          # tofu apply -auto-approve -destroy
+
+          # change this if actually destroying, otherwise kinda confusing
+          echo "~~~~~~~~~~~~~~~~~~~~~~"
+          echo "Not really destroying!"
+          echo "~~~~~~~~~~~~~~~~~~~~~~"
+      - run: echo "🍏 This job's status is ${{ job.status }}."
