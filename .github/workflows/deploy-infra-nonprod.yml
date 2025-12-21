@@ -13,7 +13,7 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIV_FOR_GROSGRAIN }}
       - name: Install OpenTofu
-        uses: tinisi/grosgrain/github_actions/install-tofu-client@master
+        uses: agent-0028/deps/github_actions/install-tofu-client@master
       - name: OpenTofu lint
         working-directory: terraform/nonprod
         run: |
@@ -27,7 +27,7 @@ jobs:
         run: |
           tofu init
           tofu workspace select --or-create dev
-          tofu plan --input=false --out=./tinisi-infra.tfplan
+          tofu plan --input=false --out=./infra.tfplan
       - name: Tofu Apply
         working-directory: terraform/nonprod
         env:
@@ -37,5 +37,5 @@ jobs:
         run: |
           tofu init
           tofu workspace select --or-create dev
-          tofu apply --input=false ./tinisi-infra.tfplan
+          tofu apply --input=false ./infra.tfplan
       - run: echo "🍏 This job's status is ${{ job.status }}."

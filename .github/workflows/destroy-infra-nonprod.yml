@@ -13,7 +13,7 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIV_FOR_GROSGRAIN }}
       - name: Install OpenTofu
-        uses: tinisi/grosgrain/github_actions/install-tofu-client@master
+        uses: agent-0028/deps/github_actions/install-tofu-client@master
       - name: OpenTofu lint
         working-directory: terraform/nonprod
         run: |

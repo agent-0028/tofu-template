@@ -13,7 +13,7 @@ terraform {
 }
 
 module "config" {
-  source = "git@github.com:tinisi/grosgrain.git//terraform/modules/config?ref=master"
+  source = "git@github.com:agent-0028/deps.git//terraform/modules/config?ref=master"
   env    = terraform.workspace
   repo   = var.repo
 }
