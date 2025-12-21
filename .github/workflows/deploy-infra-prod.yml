@@ -8,12 +8,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-      - name: Set up SSH agent
-        uses: webfactory/ssh-agent@v0.5.4
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIV_FOR_GROSGRAIN }}
       - name: Install OpenTofu
-        uses: tinisi/grosgrain/github_actions/install-tofu-client@master
+        uses: agent-0028/deps/github_actions/install-tofu-client@main
       - name: OpenTofu lint
         working-directory: terraform/prod
         run: |
@@ -27,7 +23,7 @@ jobs:
         run: |
           tofu init
           tofu workspace select default
-          tofu plan --input=false --out=./tinisi-infra.tfplan
+          tofu plan --input=false --out=./infra.tfplan
       - name: Tofu Apply
         working-directory: terraform/prod
         env:
@@ -37,5 +33,5 @@ jobs:
         run: |
           tofu init
           tofu workspace select default
-          tofu apply --input=false ./tinisi-infra.tfplan
+          tofu apply --input=false ./infra.tfplan
       - run: echo "🍏 This job's status is ${{ job.status }}."

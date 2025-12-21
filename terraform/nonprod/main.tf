@@ -4,7 +4,7 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    bucket = "grosgrain"
+    bucket = "example-bucket-for-state"
     # Change this!
     # Should be different from prod.
     key    = "terraform-state/template-tofu-nonprod/tf"
@@ -13,8 +13,8 @@ terraform {
 }
 
 module "config" {
-  source = "git@github.com:tinisi/grosgrain.git//terraform/modules/config?ref=master"
-  env    = terraform.workspace
+  source = "git::https://github.com/agent-0028/deps.git//terraform/modules/config?ref=main"
+  env    = "nonprod"
   repo   = var.repo
 }
 output "env-suffix" {
