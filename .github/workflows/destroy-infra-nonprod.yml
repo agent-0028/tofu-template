@@ -4,16 +4,12 @@ on: workflow_dispatch
 jobs:
   tofu-destroy-non-prod:
     runs-on: ubuntu-22.04
-    environment: dev
+    environment: nonprod
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
-      - name: Set up SSH agent
-        uses: webfactory/ssh-agent@v0.5.4
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIV_FOR_GROSGRAIN }}
       - name: Install OpenTofu
-        uses: tinisi/grosgrain/github_actions/install-tofu-client@master
+        uses: agent-0028/deps/github_actions/install-tofu-client@main
       - name: OpenTofu lint
         working-directory: terraform/nonprod
         run: |

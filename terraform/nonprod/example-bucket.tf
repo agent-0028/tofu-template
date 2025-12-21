@@ -1,7 +1,7 @@
 module "example_bucket" {
-  source = "git@github.com:tinisi/grosgrain.git//terraform/modules/bucket?ref=master"
+  source = "git::https://github.com/agent-0028/deps.git//terraform/modules/bucket?ref=main"
   attributes = {
-    bucket : "tinisi-example"
+    bucket : "bucket-example"
   }
   env-suffix = module.config.env-suffix
   env        = module.config.env
