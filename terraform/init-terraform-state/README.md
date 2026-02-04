@@ -6,8 +6,6 @@ Since it makes my head hurt to store state for this bucket in that same bucket, 
 
 So...whenever you run this from a new machine, you will need to import the state.
 
-https://opentofu.org
-
 ### Steps for first run
 
 Use this if you have just used this template repo and you are creating a bucket for Terraform state the first time.
