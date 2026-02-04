@@ -1,5 +1,5 @@
 module "example_bucket" {
-  source = "git@github.com:agent-0028/deps.git//terraform/modules/bucket?ref=master"
+  source = "git@github.com:agent-0028/deps.git//terraform/modules/bucket?ref=main"
   attributes = {
     bucket : "bucket-example"
   }
