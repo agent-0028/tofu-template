@@ -11,7 +11,6 @@ A template repo for OpenTofu projects.
     * specify a new key for state instead of `terraform-state/template-tofu-prod/tf`
 * Populate these secrets in all GitHub Action environments
     * `AWS_SECRET_ACCESS_KEY`
-    * `SSH_PRIV_FOR_GROSGRAIN`
 * Populate these environment variables in all GitHub Action environments
     * `AWS_ACCESS_KEY_ID`
     * `AWS_DEFAULT_REGION`
