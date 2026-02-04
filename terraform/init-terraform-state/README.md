@@ -59,8 +59,8 @@ Use this if you have previously created a bucket for state and want to get it un
 * Create import block like this:
 ```
 import {
-  to = aws_s3_bucket.grosgrain
-  id = "grosgrain"
+  to = aws_s3_bucket.example-bucket-for-state
+  id = "example-bucket-for-state"
 }
 ```
 * Make sure you DO NOT declare the resource anywhere you are importing
