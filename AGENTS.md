@@ -14,6 +14,8 @@ The goal with this project is to utilize the GitHub Actions pipeline as much as 
 
 Coding agents and humans should avoid running `tofu apply` or `tofu destroy` locally.
 
+The one exception is `terraform/init-terraform-state/`, which uses local state and is applied locally once, only when creating a new state bucket. See its `README.md`.
+
 Instead, code should be merged and pushed to GitHub and run using GitHub Actions through the web console.
 
 ## Practices
