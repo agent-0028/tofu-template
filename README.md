@@ -34,7 +34,7 @@ Change `terraform/nonprod/main.tf` and `terraform/prod/main.tf`:
 
   For example: `terraform-state/my-repo-nonprod/tf` and `terraform-state/my-repo-prod/tf`.
 
-Also update `var.repo` in `terraform/nonprod/variables.tf` and `terraform/prod/variables.tf`.
+Also update `var.repo` in `terraform/nonprod/variables.tf` and `terraform/prod/variables.tf`. To deploy somewhere other than `us-west-2`, change `var.aws_region` in the same files.
 
 ### 3. GitHub Actions environments
 
