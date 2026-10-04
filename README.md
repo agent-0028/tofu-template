@@ -2,6 +2,8 @@
 
 A template repo for OpenTofu projects.
 
+**Using an AI coding agent?** Ask it to bootstrap this repo. The `bootstrap-from-template` skill in [`.agents/skills/`](.agents/skills/bootstrap-from-template/SKILL.md) walks through the steps below and logs progress in [`agent-log.md`](agent-log.md).
+
 ## Repo and pipeline set up
 
 ### 1. State bucket
