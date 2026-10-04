@@ -2,6 +2,8 @@
 
 A template repo for OpenTofu projects.
 
+**Using an AI coding agent?** Ask it to bootstrap this repo. The `bootstrap-from-template` skill in [`.agents/skills/`](.agents/skills/bootstrap-from-template/SKILL.md) walks through the steps below and logs progress in [`agent-log.md`](agent-log.md).
+
 ## Repo and pipeline set up
 
 ### 1. State bucket
@@ -34,7 +36,7 @@ Change `terraform/nonprod/main.tf` and `terraform/prod/main.tf`:
 
   For example: `terraform-state/my-repo-nonprod/tf` and `terraform-state/my-repo-prod/tf`.
 
-Also update `var.repo` in `terraform/nonprod/variables.tf` and `terraform/prod/variables.tf`.
+Also update `var.repo` in `terraform/nonprod/variables.tf` and `terraform/prod/variables.tf`. To deploy somewhere other than `us-west-2`, change `var.aws_region` in the same files.
 
 ### 3. GitHub Actions environments
 

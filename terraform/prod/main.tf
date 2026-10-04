@@ -13,9 +13,10 @@ terraform {
 }
 
 module "config" {
-  source = "git::https://github.com/agent-0028/deps.git//terraform/modules/config?ref=main"
-  env    = "prod"
-  repo   = var.repo
+  source     = "git::https://github.com/agent-0028/deps.git//terraform/modules/config?ref=main"
+  env        = "prod"
+  repo       = var.repo
+  aws_region = var.aws_region
 }
 output "env-suffix" {
   value = module.config.env-suffix
