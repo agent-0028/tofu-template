@@ -59,7 +59,7 @@ Use this if you have previously created a bucket for state and want to get it un
 * Create import block like this:
 ```
 import {
-  to = aws_s3_bucket.example-bucket-for-state
+  to = aws_s3_bucket.tofu-template-example
   id = "example-bucket-for-state"
 }
 ```
